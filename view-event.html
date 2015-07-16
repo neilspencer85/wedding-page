@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<title>FotoFly Weddings</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	    <meta name="description" content="FotoFly Weddings">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+		<link rel="stylesheet" href="main.css">
+	</head>
+	<body ng-controller="myCtrl">
+		<div class="container">
+			<div class="jumbotron">
+				<h1>{{ eventName }}</h1>
+				<h4>View, export, oe delete the images from this event.</h4>
+			</div>
+			<div>
+				<button class="btn btn-success" ng-click="export()">Export All</button>
+				<button class="btn btn-success" ng-click="imageDelete()">Delete Image</button>
+				<button class="btn btn-success" ng-click="eventDelete()">Delete Event</button>
+			</div>	
+			<section>
+				<h2>Create New Event</h2>
+			</section>
+
+			<section>
+				<h2>View Event</h2>
+			</section>
+		</div
+	</body>
+	<script type="text/javascript" src="app.js"></script>
+</html>
