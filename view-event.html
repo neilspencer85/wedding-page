@@ -13,20 +13,18 @@
 	<body ng-controller="myCtrl">
 		<div class="container">
 			<div class="jumbotron">
+				<img src="silver_logo.jpg" alt="FoloFly Logo" style="width:500px;height:250px;">
 				<h1>{{ eventName }}</h1>
 				<h4>View, export, oe delete the images from this event.</h4>
 			</div>
 			<div>
-				<button class="btn btn-success" ng-click="export()">Export All</button>
-				<button class="btn btn-success" ng-click="imageDelete()">Delete Image</button>
-				<button class="btn btn-success" ng-click="eventDelete()">Delete Event</button>
+				<button class="btn btn-success" ng-click="export()" id="export">Export All</button>
+				<button class="btn btn-success" ng-click="imageDelete()" id="delete">Delete Image</button>
+				<button class="btn btn-success" ng-click="eventDelete()" id="deleteEvent">Delete Event</button>
 			</div>	
 			<section>
-				<h2>Create New Event</h2>
-			</section>
-
-			<section>
-				<h2>View Event</h2>
+				<h2>View Event Images</h2>
+				
 			</section>
 		</div
 	</body>

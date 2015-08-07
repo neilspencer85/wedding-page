@@ -12,8 +12,35 @@ section{
 
 h1 {
     text-align: center;
+    font-family: 'Open Sans Condensed', serif;
+}
+
+h2 {
+	padding-top: 20px;
+    padding-bottom: 5px;
+    font-family: 'Open Sans Condensed', serif;
+    font-size: 30px;
 }
 
 h4 {
     text-align: center;
+    font-family: 'Tangerine', serif;
+    font-size: 48px;
+}
+
+label {
+	padding-top: 10px;
+    padding-bottom: 5px;
+    font-family: 'Open Sans Condensed', serif;
+    font-size: 15px;
+}
+
+button {
+	padding: 5px;
+}
+
+#export,
+#delete,
+#deleteEvent {
+
 }
