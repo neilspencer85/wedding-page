@@ -44,3 +44,12 @@ button {
 #deleteEvent {
 
 }
+
+.bigHeader {
+    background-color: #EB731F;   
+}
+
+.errorMsg {
+    color: red;
+    font-style: italic;
+}
