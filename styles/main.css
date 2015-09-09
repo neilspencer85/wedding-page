@@ -84,6 +84,7 @@ button {
 .mainContent {
     margin: 20px auto;
     padding: 60px;
+    padding-top: 10px;
     width: 80%;
     height: auto;
     background-color: white;
@@ -91,6 +92,17 @@ button {
     top: 75px;
     right: 10%;
     z-index: 10;
+}
+
+.login {
+    width: 60%;
+    right: 20%;
+    padding: 60px;
+}
+
+.navButtons {
+    margin-bottom: 40px;
+    width: 100%;
 }
 
 .adminForm {
@@ -130,6 +142,32 @@ button {
     width: 100%;
 }
 
-.eventBtns {
-    margin: 20px;
+/*.eventBtns {*/
+/*    margin: 20px;*/
+/*}*/
+
+.checkboxes {
+    position: relative;
+    top: 38px;
+    color: white;
 }
+
+.menu {
+    position: relative;
+    right: 40px;
+    top: 30px;
+}
+
+/* Rules for sizing icons */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }

@@ -5,19 +5,9 @@ var app = angular.module('Fotofly', ['ui.router', 'ngAnimate', 'ngMaterial']);
     app.config(['$stateProvider', '$urlRouterProvider', '$mdThemingProvider', function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
   	
   	$mdThemingProvider.theme('default')
-        .primaryPalette('deep-orange', {
-            'default': '300',
-            'hue-1' : '300',
-            'hue-2' : '200',
-            'hue-3' : '50'
-        })
+        .primaryPalette('cyan')
         
-        .accentPalette('red', {
-            'default' : '300',
-            'hue-1'   : '200',
-            'hue-2'   : '100',
-            'hue-3'   : '50'
-        });
+        .accentPalette('pink');
 
         // .backgroundPalette('light-green', {
         //     'default' : '50',

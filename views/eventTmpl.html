@@ -1,5 +1,9 @@
 <md-whiteframe class="md-whiteframe-z3 mainContent" layout="column" layout-align="center center">
-
+	<div class="navButtons" layout="row" layout-align="end center">
+		<md-button class="md-raised md-primary">Home</md-button>
+		<md-button class="md-raised md-primary">Logout</md-button>
+	</div>
+	
 	<!--<div class="jumbotron">-->
 	<!--	<img src="silver_logo.jpg" alt="FoloFly Logo" style="width:500px;height:250px;">-->
 	<!--	<h1>{{ eventName }}</h1>-->
@@ -12,10 +16,11 @@
 		<button class="btn btn-success" ng-click="eventDelete()" id="deleteEvent">Delete Event</button>
 	</div>
 	<br><br>
-	<div class="photoGrid" layout="row" layout-wrap layout-margin layout-align="space-between start">
-		<div class='photoContainer' ng-repeat='photo in photos' flex=20>
+	<div class="photoGrid" layout="row" layout-wrap layout-align="space-between start">
+		<div class='photoContainer' ng-repeat='photo in photos' flex="20">
+			<md-checkbox class="checkboxes"></md-checkbox>
 			<img class='photo' src="{{photo.attributes.thumbnailImage._url}}"></img>
 		</div>
 	</div>
 	
-</md-button>
+</md-whiteframe>
