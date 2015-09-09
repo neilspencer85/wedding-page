@@ -1,42 +1,43 @@
-<div class="container">
-	<div class="jumbotron" class="bigHeader">
-		<center><img src="assets/img/silver_logo.png" alt="FoloFly Logo" style="width:400px;height:200px;" align="middle" ></center>
-		<h1>Wedding App</h1>
-		<h4> Admin page to create a new event or view photos from a past event.</h4>
-	</div>
-	<!-- <end center> -->
-	<h2>Create New Event</h2>
-	<span class='errorMsg'>{{ createEventError }}</span>
-	<div class="input-group">
-		<label for="name">Event Name</label>
-		<input class="form-control" type="text" name="name" ng-model="event.name" placeholder="Enter Event Name" size="40">
-	</div>
-	<div class="input-group">
-		<label for="key">Event Code</label>
-		<input class="form-control" type="text" name="key" ng-model="event.eventCode" placeholder="Event Code must be unique" size="40">
-	</div>
-	<div class="input-group">
-		<label for="eventDate">Date</label>
-		<input class="form-control" type="date" name="eventDate" ng-model="event.eventDate" size="40">
-	</div>
-	<div class="input-group">
-		<label for="fbAdmin">Facebook Account for Admin</label>
-		<input class="form-control" type="text" name="fbAdmin" ng-model="event.fbAdmin" placeholder="Enter Facebook URL" size="23">
-	</div>
-	<div class="input-group">
-		<label for="instaAdmin">Instagram Account for Admin</label>
-		<input class="form-control" type="text" name="instaAdmin" ng-model="event.instaAdmin" placeholder="Enter Instagram User Name" size="23">
-	</div>
-	<br>
-	<button class="btn btn-success" ng-click="newEvent(event)">Create</button>
-		<br>
-	<h2>View Event</h2>
-	<span class='errorMsg'>{{ getEventError }}</span>
+	<!--<h4> Admin page to create a new event or view photos from a past event.</h4>-->
+<md-whiteframe class="md-whiteframe-z3 mainContent" layout="column" layout-align="center center">
+	<h1>Wedding App</h1>
+	<form class='adminForm'>
+		<h2>Create New Event</h2>
+		<span class='errorMsg'>{{ createEventError }}</span>
 		<div class="input-group">
-			<label for="id">Event Code</label>
-			<input class="form-control" type="text" name="id" ng-model="event.id" placeholder="Enter Event Code" size="35">
+			<label for="name">Event Name</label>
+			<input required class="form-control" type="text" name="name" ng-model="event.name" placeholder="Enter Event Name" size="40">
+		</div>
+		<div class="input-group">
+			<label for="key">Event Code</label>
+			<input required class="form-control" type="text" name="key" ng-model="event.key" placeholder="Event Code must be unique" size="40">
+		</div>
+		<div class="date">
+			<label for="eventDate">Date</label>
+			<input required class="form-control" type="date" name="eventDate" ng-model="event.eventDate" size="40">
+		</div>
+		<div class="input-group">
+			<label for="fbAdmin">Facebook Account for Admin</label>
+			<input required class="form-control" type="text" name="fbAdmin" ng-model="event.fbAdmin" placeholder="Enter Facebook URL" size="23">
+		</div>
+		<div class="input-group">
+			<label for="instaAdmin">Instagram Account for Admin</label>
+			<input required class="form-control" type="text" name="instaAdmin" ng-model="event.instaAdmin" placeholder="Enter Instagram User Name" size="23">
 		</div>
 		<br>
-	<button class="btn btn-success" ng-click="getEvent(event.id)">View</button>
-
-</div>
+		<md-button type='submit' class="md-raised" id="buttons" ng-click="newEvent(event)">Submit</md-button>
+	</form>
+	<br>
+	<br>
+	
+	<form class='adminForm'>
+		<h2>View Event</h2>
+		<span class='errorMsg'>{{ getEventError }}</span>
+			<div class="input-group">
+				<label for="id">Event Code</label>
+				<input required class="form-control" type="text" name="id" ng-model="event.id" placeholder="Enter Event Code" size="35">
+			</div>
+			<br>
+		<md-button type='submit' class="md-raised" id="buttons" ng-click="getEvent(event.id)">Submit</md-button>
+	</form>	
+</md-whiteframe>

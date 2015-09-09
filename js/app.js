@@ -1,15 +1,40 @@
 Parse.initialize("pv2dMyXIqGOj7YefpKKmCBSVQCbZo4cjQp9FQCC1", "PrqgGnvbM0q09YsOTnQTUkS7JlzjXJg1OG4oUxjT");
 
-var app = angular.module('Fotofly', ['ui.router']);
+var app = angular.module('Fotofly', ['ui.router', 'ngAnimate', 'ngMaterial']);
 
-    app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    app.config(['$stateProvider', '$urlRouterProvider', '$mdThemingProvider', function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
   	
+  	$mdThemingProvider.theme('default')
+        .primaryPalette('deep-orange', {
+            'default': '300',
+            'hue-1' : '300',
+            'hue-2' : '200',
+            'hue-3' : '50'
+        })
+        
+        .accentPalette('red', {
+            'default' : '300',
+            'hue-1'   : '200',
+            'hue-2'   : '100',
+            'hue-3'   : '50'
+        });
+
+        // .backgroundPalette('light-green', {
+        //     'default' : '50',
+        //     'hue-1'   : '300',
+        //     'hue-2'   : '200',
+        //     'hue-3'   : '50'
+        // })
+        
     $urlRouterProvider.otherwise('/login');
     
     $stateProvider
         .state('login', {
             url: '/login',
             views: {
+                'header': {
+                    templateUrl: 'views/header.html',
+                },
                 'content': {
                     templateUrl: 'views/loginTmpl.html',
                     controller: 'LoginCtrl'
@@ -23,6 +48,9 @@ var app = angular.module('Fotofly', ['ui.router']);
         .state('admin', {
             url: '/admin',
             views: {
+                'header': {
+                    templateUrl: 'views/header.html',
+                },
                 'content': {
                     templateUrl: 'views/adminTmpl.html',
                     controller: 'AdminCtrl'
@@ -36,6 +64,9 @@ var app = angular.module('Fotofly', ['ui.router']);
         .state('event', {
             url: '/event',
             views: {
+                'header': {
+                    templateUrl: 'views/header.html',
+                },
                 'content': {
                     templateUrl: 'views/eventTmpl.html',
                     controller: 'EventCtrl'
@@ -47,8 +78,11 @@ var app = angular.module('Fotofly', ['ui.router']);
             }
         })
         .state('eventId', {
-            url: '/event/:eventCode',
+            url: '/event/:eventId',
             views: {
+                'header': {
+                    templateUrl: 'views/header.html',
+                },
                 'content': {
                     templateUrl: 'views/eventTmpl.html',
                     controller: 'EventCtrl'
@@ -64,9 +98,9 @@ var app = angular.module('Fotofly', ['ui.router']);
             //         return eventService.getEvent($route.current.params.eventCode)
             //     }
             // }
-        })
+        });
         
-    }]); // end .config
+}]); // end .config
         
         
 // var newEvent = Parse.Object.extend("newEvent");

@@ -1,12 +1,21 @@
-<div class="container">
-	<div class="jumbotron">
-		<img src="silver_logo.jpg" alt="FoloFly Logo" style="width:500px;height:250px;">
-		<h1>{{ eventName }}</h1>
-		<h4>View, export, o delete the images from this event.</h4>
-	</div>
-	<div>
+<md-whiteframe class="md-whiteframe-z3 mainContent" layout="column" layout-align="center center">
+
+	<!--<div class="jumbotron">-->
+	<!--	<img src="silver_logo.jpg" alt="FoloFly Logo" style="width:500px;height:250px;">-->
+	<!--	<h1>{{ eventName }}</h1>-->
+	<!--	<h4>View, export, o delete the images from this event.</h4>-->
+	<!--	<img src="{{photo}}"></img>-->
+	<!--</div>-->
+	<div class="eventBtns">
 		<button class="btn btn-success" ng-click="export()" id="export">Export All</button>
 		<button class="btn btn-success" ng-click="imageDelete()" id="delete">Delete Image</button>
 		<button class="btn btn-success" ng-click="eventDelete()" id="deleteEvent">Delete Event</button>
-	</div>	
-</div>
+	</div>
+	<br><br>
+	<div class="photoGrid" layout="row" layout-wrap layout-margin layout-align="space-between start">
+		<div class='photoContainer' ng-repeat='photo in photos' flex=20>
+			<img class='photo' src="{{photo.attributes.thumbnailImage._url}}"></img>
+		</div>
+	</div>
+	
+</md-button>

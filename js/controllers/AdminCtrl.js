@@ -4,7 +4,7 @@ app.controller('AdminCtrl', ['$scope', 'eventService', '$location', function($sc
     //  Create new event  //
     ////////////////////////
     $scope.newEvent = function(event) {
-        eventService.getEvent(event.eventCode).then(function(res) {
+        eventService.getEvent(event.key).then(function(res) {
         if (res.length > 0) {
             $scope.createEventError = "Looks like there is an event with that code already. Please try again with a unique event code!";
             $scope.event.eventCode = "";
@@ -29,7 +29,7 @@ app.controller('AdminCtrl', ['$scope', 'eventService', '$location', function($sc
                 $scope.event.id = "";
             } else {
                 console.log(res[0].attributes.eventCode);
-                $location.path('/event/' + res[0].attributes.eventCode)   ;
+                $location.path('/event/' + res[0].attributes.key)   ;
             }
         });
 
