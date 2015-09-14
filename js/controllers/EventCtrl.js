@@ -11,6 +11,18 @@ app.controller('EventCtrl', ['$scope', '$stateParams', 'eventService', '$locatio
         });
     }());
     
+    // (function testPhotoStuff() {
+        
+    //     var photoUrl =  
+    //     Parse.Cloud.httpRequest({ url: photoUrl.url() }).then(function(response) {
+    //       // The file contents are in response.buffer.
+    //         console.log("response: ", response);
+    //         console.log("response.buffer: ", response.buffer);
+    //     });
+    
+    // }());
+    
+    
     $scope.getPhotos =function() {
         eventService.getPhotos($stateParams.eventId).then(function(res) {
             console.log("GetPhotos: ", res);
@@ -20,10 +32,10 @@ app.controller('EventCtrl', ['$scope', '$stateParams', 'eventService', '$locatio
             $scope.originalImages = [];
             for(var i = 0; i < $scope.photos.length; i += 1) {
                 if($scope.photos[i].attributes.originalImage) {
-                    var photoUrl = $scope.photos[i].attributes.originalImage._url.split("http").join("https");
+                    var photoUrl = $scope.photos[i].attributes.originalImage._url.split("http").join("https") + ".jpeg";
                     $scope.originalImages.push(photoUrl); 
                 } else {
-                    var photoUrl2 = $scope.photos[i].attributes.midResolutionImage._url.split("http").join("https");
+                    var photoUrl2 = $scope.photos[i].attributes.midResolutionImage._url.split("http").join("https") + ".jpeg";
                     $scope.originalImages.push(photoUrl2);
                 }
                 
