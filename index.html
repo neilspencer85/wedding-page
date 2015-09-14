@@ -11,27 +11,31 @@
 		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed">
-		<link rel="stylesheet" type="text/css" href="./js/bower_components/angular-material/angular-material.css">
+		<link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-		<!--<link rel="stylesheet" href="styles/base.css">-->
+		<link rel="stylesheet" href="styles/base.css">
 		<link rel="stylesheet" href="styles/main.css">
 	</head>
 	<body ng-controller="MainCtrl">
 		
+		
 		<!-- <center> -->
-		<div ui-view='header'></div>
 		<div ui-view='content'></div>
-		<div ui-view='footer'></div>
 		<br><br><br>
 		<!-- <center> -->
 		
 		
-		<script src="./js/bower_components/angular/angular.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
-		<script src="./js/bower_components/angular-animate/angular-animate.js"></script>
-		<script src="./js/bower_components/angular-aria/angular-aria.js"></script>
-		<script src="./js/bower_components/angular-material/angular-material.js"></script>
-		<script src="libs/parse.js"></script>
+		
+		<script type="text/javascript" src="bower_components/jquery/src/jquery.js"></script>
+		<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+		<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+		<script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
+		<script type="text/javascript" src="bower_components/angular-aria/angular-aria.js"></script>
+		<script type="text/javascript" src="bower_components/angular-material/angular-material.js"></script>
+		<script type="text/javascript" src="bower_components/jszip/dist/jszip.js"></script>
+		<script type="text/javascript" src="bower_components/file-saver/FileSaver.js"></script>
+		<script type="text/javascript" src="libs/jszip-utils.js"></script>
+		<script type="text/javascript" src="libs/parse.js"></script>
 		<!--app.js-->
 		<script type="text/javascript" src="js/app.js"></script>
 		<!--controllers-->
@@ -43,5 +47,6 @@
 		<script type="text/javascript" src="js/services/eventService.js"></script>
 		<script type="text/javascript" src="js/services/photoService.js"></script>
 		<script type="text/javascript" src="js/services/userService.js"></script>
+
 	</body>
 </html>

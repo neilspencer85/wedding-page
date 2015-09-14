@@ -1,4 +1,9 @@
-app.controller('AdminCtrl', ['$scope', 'eventService', '$location', function($scope, eventService, $location) {
+app.controller('AdminCtrl', ['$scope', 'eventService', '$location', 'isAuthed', '$mdToast', '$document', function($scope, eventService, $location, isAuthed, $mdToast, $document) {
+    
+    if(!isAuthed) {
+        $location.path('/login');
+    }
+    
     
     ////////////////////////
     //  Create new event  //
@@ -11,10 +16,9 @@ app.controller('AdminCtrl', ['$scope', 'eventService', '$location', function($sc
         }
         else 
             eventService.createEvent(event).then(function(res) {
-                console.log("Yaya it worked: ", res);
+                $scope.eventCreated();
             });
         });
-        
     };
     
     
@@ -32,8 +36,46 @@ app.controller('AdminCtrl', ['$scope', 'eventService', '$location', function($sc
                 $location.path('/event/' + res[0].attributes.key)   ;
             }
         });
-
-        // $location
+    };
+    
+    $scope.logout = function() {
+        Parse.User.logOut();
+        console.log("logout");
+        $location.path('/login');
+    };
+    
+    var last = {
+        bottom: true,
+        top: false,
+        left: false,
+        right: true
+    };
+    
+    $scope.toastPosition = angular.extend({},last);
+    
+    $scope.getToastPosition = function() {
+        sanitizePosition();
+        return Object.keys($scope.toastPosition)
+            .filter(function(pos) { return $scope.toastPosition[pos]; })
+            .join(' ');
+    };
+    
+    function sanitizePosition() {
+        var current = $scope.toastPosition;
+        if ( current.bottom && last.top ) current.top = false;
+        if ( current.top && last.bottom ) current.bottom = false;
+        if ( current.right && last.left ) current.left = false;
+        if ( current.left && last.right ) current.right = false;
+        last = angular.extend({},current);
+    }
+    
+    $scope.eventCreated = function() {
+        $mdToast.show(
+            $mdToast.simple()
+                .content('Event was created successfully!')
+                .position($scope.getToastPosition())
+                .hideDelay(2000)
+        );
     };
     
 }]); //End AdminCtrl

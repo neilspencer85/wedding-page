@@ -1,11 +1,10 @@
-app.controller('MainCtrl', ['$scope', function($scope) {
+app.controller('MainCtrl', ['$scope', '$state', function($scope, $state) {
     
-    // console.log("what even is a parse???", Parse);
-    // var TestObject = Parse.Object.extend("WebTestObject");
-    // var testObject = new TestObject();
-    // testObject.save({foo: "buzz"}).then(function(object) {
-    //   var msgbox = Windows.UI.Popups.MessageDialog("yay! it worked");
-    //   return msgbox.showAsync();
-    // });
+    $scope.logout = function() {
+        Parse.User.logOut();
+        console.log("logout");
+    };
+    
+    $scope.uiRouterState = $state;
     
 }]); //End MainCtrl

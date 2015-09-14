@@ -5,9 +5,11 @@ var app = angular.module('Fotofly', ['ui.router', 'ngAnimate', 'ngMaterial']);
     app.config(['$stateProvider', '$urlRouterProvider', '$mdThemingProvider', function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
   	
   	$mdThemingProvider.theme('default')
-        .primaryPalette('cyan')
+        .primaryPalette('grey', {
+            'default' : '700'
+        })
         
-        .accentPalette('pink');
+        .accentPalette('amber');
 
         // .backgroundPalette('light-green', {
         //     'default' : '50',
@@ -24,6 +26,7 @@ var app = angular.module('Fotofly', ['ui.router', 'ngAnimate', 'ngMaterial']);
             views: {
                 'header': {
                     templateUrl: 'views/header.html',
+                    controller: 'MainCtrl'
                 },
                 'content': {
                     templateUrl: 'views/loginTmpl.html',
@@ -40,6 +43,7 @@ var app = angular.module('Fotofly', ['ui.router', 'ngAnimate', 'ngMaterial']);
             views: {
                 'header': {
                     templateUrl: 'views/header.html',
+                    controller: 'MainCtrl'
                 },
                 'content': {
                     templateUrl: 'views/adminTmpl.html',
@@ -49,6 +53,11 @@ var app = angular.module('Fotofly', ['ui.router', 'ngAnimate', 'ngMaterial']);
                     templateUrl: 'views/footer.html',
                     controller: 'MainCtrl'
                 }
+            },
+            resolve: {
+                isAuthed: function(userService) {
+                    return Parse.User.current();
+                }
             }
         })
         .state('event', {
@@ -56,6 +65,7 @@ var app = angular.module('Fotofly', ['ui.router', 'ngAnimate', 'ngMaterial']);
             views: {
                 'header': {
                     templateUrl: 'views/header.html',
+                    controller: 'MainCtrl'
                 },
                 'content': {
                     templateUrl: 'views/eventTmpl.html',
@@ -64,6 +74,11 @@ var app = angular.module('Fotofly', ['ui.router', 'ngAnimate', 'ngMaterial']);
                 'footer': {
                     templateUrl: 'views/footer.html',
                     controller: 'MainCtrl'
+                }
+            },
+            resolve: {
+                isAuthed: function(userService) {
+                    return Parse.User.current();
                 }
             }
         })
@@ -71,7 +86,8 @@ var app = angular.module('Fotofly', ['ui.router', 'ngAnimate', 'ngMaterial']);
             url: '/event/:eventId',
             views: {
                 'header': {
-                    templateUrl: 'views/header.html',
+                    templateUrl: 'views/eventHeader.html',
+                    controller: 'MainCtrl'
                 },
                 'content': {
                     templateUrl: 'views/eventTmpl.html',
@@ -81,13 +97,12 @@ var app = angular.module('Fotofly', ['ui.router', 'ngAnimate', 'ngMaterial']);
                     templateUrl: 'views/footer.html',
                     controller: 'MainCtrl'
                 }
-            }, 
-            // resolve: {
-            //     eventData: function($route, eventService){
-            //         console.log($route.current.params.eventCode)
-            //         return eventService.getEvent($route.current.params.eventCode)
-            //     }
-            // }
+            },
+            resolve: {
+                isAuthed: function(userService) {
+                    return Parse.User.current();
+                }
+            }
         });
         
 }]); // end .config

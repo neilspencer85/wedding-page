@@ -1,26 +1,40 @@
-<md-whiteframe class="md-whiteframe-z3 mainContent" layout="column" layout-align="center center">
-	<div class="navButtons" layout="row" layout-align="end center">
-		<md-button class="md-raised md-primary">Home</md-button>
-		<md-button class="md-raised md-primary">Logout</md-button>
-	</div>
-	
-	<!--<div class="jumbotron">-->
-	<!--	<img src="silver_logo.jpg" alt="FoloFly Logo" style="width:500px;height:250px;">-->
-	<!--	<h1>{{ eventName }}</h1>-->
-	<!--	<h4>View, export, o delete the images from this event.</h4>-->
-	<!--	<img src="{{photo}}"></img>-->
-	<!--</div>-->
-	<div class="eventBtns">
-		<button class="btn btn-success" ng-click="export()" id="export">Export All</button>
-		<button class="btn btn-success" ng-click="imageDelete()" id="delete">Delete Image</button>
-		<button class="btn btn-success" ng-click="eventDelete()" id="deleteEvent">Delete Event</button>
-	</div>
-	<br><br>
-	<div class="photoGrid" layout="row" layout-wrap layout-align="space-between start">
-		<div class='photoContainer' ng-repeat='photo in photos' flex="20">
-			<md-checkbox class="checkboxes"></md-checkbox>
-			<img class='photo' src="{{photo.attributes.thumbnailImage._url}}"></img>
+<md-toolbar class="md-tall md-primary" id="topBar" layout="row" layout-align="start start">
+    <h2 class="md-toolbar-tools">
+        <img class="logo" href="/admin" src="assets/img/FotoFly-Logo.png" alt="FotoFly Logo"/>
+    </h2>
+    <span flex></span>
+    <md-button class="md-primary" ng-click="logout()" id="logoutBtn">Logout</md-button>
+</md-toolbar>
+<md-whiteframe class="md-whiteframe-z3 mainContent eventContent" layout="column" layout-align="center center">
+	<div ng-if="!photos" layout="column" layout-align="center center">
+		<br><br>
+		<h1 class="eventHeader">Event Code: {{ event }}</h1>
+		<br><br>
+		<h2 class="errorh2">Hmm... There are no photos in this event yet...</h2>
+		<h3>Get the party started and upload some photos!!!</h3>
+		<br><br>
+		<div layout="row">
+			<md-button ui-sref="admin" class="md-raised md-primary" id="settings">Back to Admin</md-button>
+			<md-button class="md-raised md-primary" ng-click="deleteEvent($event)" id="delete">Delete Event</md-button>
 		</div>
 	</div>
-	
+	<div ng-if="photos" layout="column" layout-align="center center">
+		<h1 class="eventHeader">Event Code: {{ event }}</h1>
+		<h3 class="numberHeader">Number of Photos: {{ numberOfPhotos }}</h3>
+		<div layout="row">
+			<div class="eventBtns" layout='column' layout-align='start start'>
+				<md-button class="md-raised md-primary" id="settings" ui-sref="admin">Back to Admin</md-button>
+				<md-button class="md-raised md-primary" ng-click="exportPhotos()" id="select">Export All</md-button>
+				<md-button class="md-raised md-primary" ng-click="deletePhotos()" id="deselect">Delete Photos</md-button>
+				<md-button class="md-raised md-primary" ng-click="deleteEvent($event)" id="delete">Delete Event</md-button>
+			</div>	
+			<div class="photoGrid" layout="row" layout-wrap layout-margin layout-align="space-between start">
+				<div class='photoContainer' ng-repeat='photo in photos track by $index' flex-gt-lg="20" flex-lg="25" flex-md="33" flex-sm='95'>
+					<md-checkbox class="checkboxes" ng-model="photo.selected" ng-click="imgSelect(photo.id)" aria-label="Checkbox 1"></md-checkbox>
+					<img  class='photo' ng-click="openPhotoModal($index)" src="{{photo.attributes.thumbnailImage._url}}"></img>
+				</div>
+			</div>
+		</div>
+	</div>
 </md-whiteframe>
+

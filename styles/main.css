@@ -10,31 +10,33 @@ body, html {
 /*    outline: red 1px solid;*/
 /*}*/
 
-.delete{
-	cursor: pointer;
-}
+/*.delete{*/
+/*	cursor: pointer;*/
+/*}*/
 
-.delete:hover{
-	color: #000;
-}
+/*.delete:hover{*/
+/*	color: #000;*/
+/*}*/
 
-section{
-	display: inline-block;
-}
+/*section{*/
+/*	display: inline-block;*/
+/*}*/
 
 h1 {
     text-align: center;
     font-family: 'Open Sans Condensed', serif;
+    font-size: 3em;
 }
 
 h2 {
-	padding-top: 20px;
-    padding-bottom: 5px;
     font-family: 'Open Sans Condensed', serif;
-    font-size: 30px;
 }
 
-h4 {
+errorh2 {
+    font-size: 2.6em;
+}
+
+.fancy {
     text-align: center;
     font-family: 'Tangerine', serif;
     font-size: 48px;
@@ -47,8 +49,18 @@ label {
     font-size: 15px;
 }
 
-button {
-	padding: 5px;
+/*button {*/
+/*	padding: 5px;*/
+/*}*/
+
+.loginForm {
+    width: 100%;
+}
+
+#logoutBtn {
+    position: relative;
+    right: 67px;
+    top: 47px;
 }
 
 .input-group {
@@ -57,12 +69,6 @@ button {
 
 .date {
     width: 40%;
-}
-
-#export,
-#delete,
-#deleteEvent {
-
 }
 
 .bigHeader {
@@ -75,10 +81,10 @@ button {
 }
 
 #topBar {
-    height: 275px;
+    height: 235px;
     width: 100%;
     max-height: 500px;
-    background-color: #f78538;
+    /*background-color: #f78538;*/
 }
 
 .mainContent {
@@ -89,15 +95,20 @@ button {
     height: auto;
     background-color: white;
     position: absolute;
-    top: 75px;
+    top: 140px;
     right: 10%;
     z-index: 10;
+}
+
+.eventContent {
+    right: 5%;
+    width: 90%;
 }
 
 .login {
     width: 60%;
     right: 20%;
-    padding: 60px;
+    padding-top: 20px;
 }
 
 .navButtons {
@@ -111,25 +122,23 @@ button {
 }
 
 .logo {
-    height: 75px;
-    width: 150px;
+    height: 120px;
+    width: 300px;
     position: relative;
-    top: 15px;
+    top: 50px;
+    left: 10px;
 }
 
 #buttons {
-    background-color: #77797a;
+    background-color: #d35d0e;
     color: white;
     opacity: .8;
 }
 
 .photo {
-    width: auto;
-    height: 150px;
-    /*margin: 15px auto;*/
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    width: 100%;
+    height: auto;
+    margin: auto;
 }
 
 .photoGrid {
@@ -139,7 +148,8 @@ button {
 }
 
 .photoContainer {
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
 }
 
 /*.eventBtns {*/
@@ -158,16 +168,72 @@ button {
     top: 30px;
 }
 
+.navBar {
+    width: 100%;
+}
+
+.eventBtns {
+    position: relative;
+    top: 52px;
+    right: 30px;
+    margin-right: 20px;
+}
+
+#select, #deselect, #delete, #settings {
+    background-color: #d35d0e;
+    width: 133px;
+}
+
+.eventHeader {
+    margin-bottom: 5px;
+}
+
+.numberHeader {
+    margin-bottom: none;
+}
+
+.deleteDialog {
+	width: 60%;
+	margin: auto;
+	margin-left: 20%;
+	min-width: 285px;
+}
+
+#dialogHeader {
+	color: white;
+}
+
+#dialogHeaderButton {
+	color: white; 
+	font-size: 36px;
+	margin-top: 7px;
+}
+
+.warningHeader {
+    background-color: red;
+}
+
+.photoModal {
+    height: 80%;
+    width: auto;
+    margin: auto;
+}
+
+.modalPhoto {
+    height: 100%;
+    width: 100%;
+}
+
 /* Rules for sizing icons */
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
+.md-18 { font-size: 18px; }
+.md-24 { font-size: 24px; }
+.md-36 { font-size: 36px; }
+.md-48 { font-size: 48px; }
 
 /* Rules for using icons as black on a light background */
-.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
-.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+.md-dark { color: rgba(0, 0, 0, 0.54); }
+.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
 
 /* Rules for using icons as white on a dark background */
-.material-icons.md-light { color: rgba(255, 255, 255, 1); }
-.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+.md-light { color: rgba(255, 255, 255, 1); }
+.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
