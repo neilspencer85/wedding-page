@@ -139,6 +139,7 @@ label {
     width: 100%;
     height: auto;
     margin: auto;
+    box-shadow: 3px 3px 15px #bbbbbb;
 }
 
 .photoGrid {
@@ -148,7 +149,7 @@ label {
 }
 
 .photoContainer {
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
 }
 
@@ -157,9 +158,9 @@ label {
 /*}*/
 
 .checkboxes {
-    position: relative;
-    top: 38px;
-    color: white;
+    /*position: relative;*/
+    /*bottom: 45px;*/
+    /*color: white;*/
 }
 
 .menu {
@@ -214,14 +215,12 @@ label {
 }
 
 .photoModal {
-    height: 80%;
-    width: auto;
-    margin: auto;
+    width: 60%;
 }
 
 .modalPhoto {
-    height: 100%;
-    width: 100%;
+    height: 60%;
+    width: auto;
 }
 
 /* Rules for sizing icons */
@@ -236,4 +235,4 @@ label {
 
 /* Rules for using icons as white on a dark background */
 .md-light { color: rgba(255, 255, 255, 1); }
-.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }}

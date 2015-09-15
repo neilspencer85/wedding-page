@@ -111,12 +111,35 @@ app.service('eventService', ['$http', '$q', function($http, $q) {
       return dfr.promise; 
     };
     
-    this.getZipPhotos = function(url, filename, zip) {
-        var dfr = $q.defer();
-        zip.file(filename, data);
-        console.log("data: ", data, "filename: ", filename);
-        dfr.resolve(data);
-        return dfr.promise;
+    this.getZipPhotos = function(eventId, photoIdArray) {
+      var dfr = $q.defer();
+      var Photo = Parse.Object.extend("Photo");
+      // var Photo = Parse.Object.extend("Photo")
+      var query = new Parse.Query(Photo);
+      // query.equalTo("key", eventId);
+      // query.include('photos');
+      for(var i = 0; i < photoIdArray.length; i +=1) {
+        query.get(photoIdArray[i], {
+          success: function(res) {
+            console.log("res: ", res)
+            var photoId = res.attributes.midResolutionImage.url();
+            Parse.Cloud.httpRequest({ url: photoId }).then(function(response) {
+              console.log("response: ", response)
+            });
+            // var photo = query.get(photoId);
+            console.log("photoId: ", photoId)
+            dfr.resolve(photo);
+          }, error: function(error) {
+            console.log("Error: ", error);
+          }
+        });
+      }
+      return dfr.promise;
+        // var dfr = $q.defer();
+        // zip.file(filename, data);
+        // console.log("data: ", data, "filename: ", filename);
+        // dfr.resolve(data);
+        // return dfr.promise;
     };
     
 }]); //End AdminCtrl

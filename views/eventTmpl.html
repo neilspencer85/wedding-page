@@ -28,10 +28,12 @@
 				<md-button class="md-raised md-primary" ng-click="deletePhotos()" id="deselect">Delete Photos</md-button>
 				<md-button class="md-raised md-primary" ng-click="deleteEvent($event)" id="delete">Delete Event</md-button>
 			</div>	
-			<div class="photoGrid" layout="row" layout-wrap layout-margin layout-align="space-between start">
-				<div class='photoContainer' ng-repeat='photo in photos track by $index' flex-gt-lg="20" flex-lg="25" flex-md="33" flex-sm='95'>
+			<div class="photoGrid" layout="row" layout-wrap layout-margin layout-align="start start">
+				<div class='photoContainer' ng-repeat='photo in photos' flex-gt-lg="20" flex-lg="25" flex-md="33" flex-sm='95'>
 					<md-checkbox class="checkboxes" ng-model="photo.selected" ng-click="imgSelect(photo.id)" aria-label="Checkbox 1"></md-checkbox>
-					<img  class='photo' ng-click="openPhotoModal($index)" src="{{photo.attributes.thumbnailImage._url}}"></img>
+					<!--<a ng-click="openLightboxModal($index)">-->
+						<img  class='photo' src="{{photo.attributes.thumbnailImage._url}}"></img>
+					<!--</a>-->
 				</div>
 			</div>
 		</div>

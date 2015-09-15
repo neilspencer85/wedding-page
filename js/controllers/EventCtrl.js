@@ -1,4 +1,5 @@
-app.controller('EventCtrl', ['$scope', '$stateParams', 'eventService', '$location', 'isAuthed', '$mdDialog', function($scope, $stateParams, eventService, $location, isAuthed, $mdDialog) {
+app.controller('EventCtrl', ['$scope', '$stateParams', 'eventService', '$location', 'isAuthed', '$mdDialog', 'Lightbox', 
+    function($scope, $stateParams, eventService, $location, isAuthed, $mdDialog, Lightbox) {
     
     if(!isAuthed) {
         $location.path('/login');
@@ -10,6 +11,10 @@ app.controller('EventCtrl', ['$scope', '$stateParams', 'eventService', '$locatio
             $scope.eventId = res[0].id;
         });
     }());
+    
+    $scope.openLightboxModal = function (index) {
+        Lightbox.openModal($scope.photos, index);
+    };
     
     // (function testPhotoStuff() {
         
@@ -32,10 +37,10 @@ app.controller('EventCtrl', ['$scope', '$stateParams', 'eventService', '$locatio
             $scope.originalImages = [];
             for(var i = 0; i < $scope.photos.length; i += 1) {
                 if($scope.photos[i].attributes.originalImage) {
-                    var photoUrl = $scope.photos[i].attributes.originalImage._url.split("http").join("https") + ".jpeg";
+                    var photoUrl = $scope.photos[i].id;
                     $scope.originalImages.push(photoUrl); 
                 } else {
-                    var photoUrl2 = $scope.photos[i].attributes.midResolutionImage._url.split("http").join("https") + ".jpeg";
+                    var photoUrl2 = $scope.photos[i].id;
                     $scope.originalImages.push(photoUrl2);
                 }
                 
@@ -141,18 +146,19 @@ app.controller('EventCtrl', ['$scope', '$stateParams', 'eventService', '$locatio
     $scope.exportPhotos = function() {
         var zip = new JSZip;
         var photoZip = zip.folder("Event Images");
-        for(var i = 0; i < $scope.originalImages.length; i += 1) {
-            var url = $scope.originalImages[i];
-            var filename = "Event Photo " + i;
-            // eventService.getZipPhotos(url, filename).then(function(res) {
+        // for(var i = 0; i < $scope.originalImages.length; i += 1) {
+            // var url = $scope.originalImages[i];
+            // var filename = "Event Photo " + i;
+            eventService.getZipPhotos($stateParams.eventId, $scope.originalImages).then(function(res) {
             //     photoZip.file(res);
-            zip.file(filename, url);
-            console.log("url: ", url, "filename: ", filename);
+            // zip.file(filename, url);
+            console.log("res: ", res);
             // });
-        }
-        console.log("photoZip: ", photoZip);
-        var zipper = zip.generate({type: "blob"});
-        saveAs(zipper, "photos.zip");
+        // }
+        // console.log("photoZip: ", photoZip);
+        // var zipper = zip.generate({type: "blob"});
+        // saveAs(zipper, "photos.zip");
+    });
     };
     
     // $scope.btnScroll = function() {
