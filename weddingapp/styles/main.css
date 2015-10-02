@@ -180,7 +180,7 @@ label {
     margin-right: 20px;
 }
 
-#select, #deselect, #delete, #settings {
+#select, #deselect, #delete, #settings, #closeExportModal {
     background-color: #d35d0e;
     width: 133px;
 }
@@ -195,8 +195,7 @@ label {
 
 .deleteDialog {
 	width: 60%;
-	margin: auto;
-	margin-left: 20%;
+	margin: 0 auto;
 	min-width: 285px;
 }
 
@@ -221,6 +220,10 @@ label {
 .modalPhoto {
     height: 60%;
     width: auto;
+}
+
+.modalHeader {
+    background-color: #448AFF;
 }
 
 /* Rules for sizing icons */

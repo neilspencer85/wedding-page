@@ -1,6 +1,6 @@
 Parse.initialize("pv2dMyXIqGOj7YefpKKmCBSVQCbZo4cjQp9FQCC1", "PrqgGnvbM0q09YsOTnQTUkS7JlzjXJg1OG4oUxjT");
 
-var app = angular.module('Fotofly', ['ui.router', 'ngAnimate', 'ngMaterial', 'ui.bootstrap', 'bootstrapLightbox']);
+var app = angular.module('Fotofly', ['ui.router', 'ngAnimate', 'ngMaterial', 'ui.bootstrap', 'bootstrapLightbox','parse-angular']);
 
     app.config(['$stateProvider', '$urlRouterProvider', '$mdThemingProvider', function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
   	
@@ -9,7 +9,7 @@ var app = angular.module('Fotofly', ['ui.router', 'ngAnimate', 'ngMaterial', 'ui
             'default' : '700'
         })
         
-        .accentPalette('amber');
+        .accentPalette('blue');
 
         // .backgroundPalette('light-green', {
         //     'default' : '50',
@@ -82,6 +82,9 @@ var app = angular.module('Fotofly', ['ui.router', 'ngAnimate', 'ngMaterial', 'ui
                 }
             }
         })
+        
+        //eventId can be called anywhere with $stateParams.eventId -See EventCtrl.js
+        // '/event/' + id is called to route to this event -see AdminCtrl.js ---- you must include the whole endpoint ('/event/' + id) 
         .state('eventId', {
             url: '/event/:eventId',
             views: {

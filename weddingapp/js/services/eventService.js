@@ -25,6 +25,22 @@ app.service('eventService', ['$http', '$q', function($http, $q) {
         return dfr.promise;
     };
     
+    this.getEventWithId = function(id) {
+        var dfr = $q.defer();
+        var Event = Parse.Object.extend("Event");
+        var query = new Parse.Query(Event);
+        query.equalTo("objectId", id);
+        query.find({
+          success: function(results) {
+            event = results;
+            dfr.resolve(results);
+          },
+          error: function(error) {
+            console.log("Error: " + error.code + " " + error.message);
+          }
+        });
+        return dfr.promise;
+    };
     
     this.getEvent = function(id) {
         var dfr = $q.defer();
@@ -112,34 +128,40 @@ app.service('eventService', ['$http', '$q', function($http, $q) {
     };
     
     this.getZipPhotos = function(eventId, photoIdArray) {
-      var dfr = $q.defer();
+      
+      var dfd = $q.defer();
+      var promiseArray = [];
       var Photo = Parse.Object.extend("Photo");
-      // var Photo = Parse.Object.extend("Photo")
       var query = new Parse.Query(Photo);
-      // query.equalTo("key", eventId);
-      // query.include('photos');
-      for(var i = 0; i < photoIdArray.length; i +=1) {
-        query.get(photoIdArray[i], {
-          success: function(res) {
-            console.log("res: ", res)
-            var photoId = res.attributes.midResolutionImage.url();
-            Parse.Cloud.httpRequest({ url: photoId }).then(function(response) {
-              console.log("response: ", response)
-            });
-            // var photo = query.get(photoId);
-            console.log("photoId: ", photoId)
-            dfr.resolve(photo);
-          }, error: function(error) {
-            console.log("Error: ", error);
-          }
-        });
-      }
-      return dfr.promise;
-        // var dfr = $q.defer();
-        // zip.file(filename, data);
-        // console.log("data: ", data, "filename: ", filename);
-        // dfr.resolve(data);
-        // return dfr.promise;
+      var notifyLength = photoIdArray.length;
+      var count = 1;
+      
+      photoIdArray.forEach(function(val, i, arr){
+        
+        promiseArray.push(query.get(val).then(function(res){
+          var dfdd = $q.defer();
+          var photoId = res.attributes.midResolutionImage.url().replace('http', 'https');
+          
+          Parse.Cloud.run('getPhotos', {url: photoId}).then(function(worked){
+            dfdd.resolve(worked);
+            dfd.notify((count/notifyLength) * 100);
+            count++;
+          }, function(notworked){
+           dfdd.reject(notworked); 
+          });
+          
+          return dfdd.promise;
+        }));
+      });
+      
+      $q.all(promiseArray).then(function(res){
+        dfd.resolve(res);
+      }, function(err){
+        dfd.reject(err);
+      });
+      
+      return dfd.promise;
+      
     };
     
 }]); //End AdminCtrl

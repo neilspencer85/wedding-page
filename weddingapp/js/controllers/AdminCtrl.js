@@ -3,21 +3,21 @@ app.controller('AdminCtrl', ['$scope', 'eventService', '$location', 'isAuthed', 
     if(!isAuthed) {
         $location.path('/login');
     }
-    
-    
+
     ////////////////////////
     //  Create new event  //
     ////////////////////////
     $scope.newEvent = function(event) {
         eventService.getEvent(event.key).then(function(res) {
-        if (res.length > 0) {
-            $scope.createEventError = "Looks like there is an event with that code already. Please try again with a unique event code!";
-            $scope.event.eventCode = "";
-        }
-        else 
-            eventService.createEvent(event).then(function(res) {
-                $scope.eventCreated();
-            });
+            if (res.length > 0) {
+                $scope.createEventError = "Looks like there is an event with that code already. Please try again with a unique event code!";
+                $scope.event.eventCode = "";
+            }
+            else {
+                eventService.createEvent(event).then(function(res) {
+                    $scope.eventCreated();
+                });
+            }
         });
     };
     
@@ -25,6 +25,10 @@ app.controller('AdminCtrl', ['$scope', 'eventService', '$location', 'isAuthed', 
     ////////////////////////
     //   Retrieve Event   //
     ////////////////////////
+    $scope.rooms = [];
+    
+    //getEvent gets the event to make sure it is a thing, and if not, displays an error message.
+    //Then, if there is an event in the database for that specific id, call $location.path('paramFromApp.js/' + _id for that event)
     $scope.getEvent= function(id) {
         eventService.getEvent(id).then(function(res) {
             console.log("We got the event! ", res);
@@ -32,8 +36,8 @@ app.controller('AdminCtrl', ['$scope', 'eventService', '$location', 'isAuthed', 
                 $scope.getEventError = "Uh oh... There is not an event with that Event Code. Try again with a different code!";
                 $scope.event.id = "";
             } else {
-                console.log(res[0].attributes.eventCode);
-                $location.path('/event/' + res[0].attributes.key)   ;
+                console.log(res[0].id);
+                $location.path('/event/' + res[0].id)   ;
             }
         });
     };

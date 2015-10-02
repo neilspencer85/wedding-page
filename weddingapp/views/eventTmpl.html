@@ -24,16 +24,16 @@
 		<div layout="row">
 			<div class="eventBtns" layout='column' layout-align='start start'>
 				<md-button class="md-raised md-primary" id="settings" ui-sref="admin">Back to Admin</md-button>
-				<md-button class="md-raised md-primary" ng-click="exportPhotos()" id="select">Export All</md-button>
+				<md-button class="md-raised md-primary" ng-click="exportPhotos($event)" id="select">Export All</md-button>
 				<md-button class="md-raised md-primary" ng-click="deletePhotos()" id="deselect">Delete Photos</md-button>
 				<md-button class="md-raised md-primary" ng-click="deleteEvent($event)" id="delete">Delete Event</md-button>
 			</div>	
 			<div class="photoGrid" layout="row" layout-wrap layout-margin layout-align="start start">
 				<div class='photoContainer' ng-repeat='photo in photos' flex-gt-lg="20" flex-lg="25" flex-md="33" flex-sm='95'>
 					<md-checkbox class="checkboxes" ng-model="photo.selected" ng-click="imgSelect(photo.id)" aria-label="Checkbox 1"></md-checkbox>
-					<!--<a ng-click="openLightboxModal($index)">-->
-						<img  class='photo' src="{{photo.attributes.thumbnailImage._url}}"></img>
-					<!--</a>-->
+					<a ng-click="openLightboxModal($index)">
+						<img  class='photo' src="{{photo.attributes.thumbnailImage._url}}" class="img-thumbnail"></img>
+					</a>
 				</div>
 			</div>
 		</div>
